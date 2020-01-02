@@ -1,16 +1,13 @@
 package main
 
 import (
+	simplepb "bradleypmartin-protobuf-example-go/src/simple"
 	"fmt"
 	"io/ioutil"
 	"log"
 
-	"github.com/simplesteph/protobuf-example-go/src/complex"
-	"github.com/simplesteph/protobuf-example-go/src/enum_example"
-
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
-	"github.com/simplesteph/protobuf-example-go/src/simple"
 )
 
 func main() {
@@ -19,41 +16,41 @@ func main() {
 	readAndWriteDemo(sm)
 	jsonDemo(sm)
 
-	doEnum()
+	// doEnum()
 
-	doComplex()
+	// doComplex()
 }
 
-func doComplex() {
-	cm := complexpb.ComplexMessage{
-		OneDummy: &complexpb.DummyMessage{
-			Id:   1,
-			Name: "First message",
-		},
-		MultipleDummy: []*complexpb.DummyMessage{
-			&complexpb.DummyMessage{
-				Id:   2,
-				Name: "Second message",
-			},
-			&complexpb.DummyMessage{
-				Id:   3,
-				Name: "Third message",
-			},
-		},
-	}
+// func doComplex() {
+// 	cm := complexpb.ComplexMessage{
+// 		OneDummy: &complexpb.DummyMessage{
+// 			Id:   1,
+// 			Name: "First message",
+// 		},
+// 		MultipleDummy: []*complexpb.DummyMessage{
+// 			&complexpb.DummyMessage{
+// 				Id:   2,
+// 				Name: "Second message",
+// 			},
+// 			&complexpb.DummyMessage{
+// 				Id:   3,
+// 				Name: "Third message",
+// 			},
+// 		},
+// 	}
 
-	fmt.Println(cm)
-}
+// 	fmt.Println(cm)
+// }
 
-func doEnum() {
-	em := enumpb.EnumMessage{
-		Id:           42,
-		DayOfTheWeek: enumpb.DayOfTheWeek_THURSDAY,
-	}
+// func doEnum() {
+// 	em := enumpb.EnumMessage{
+// 		Id:           42,
+// 		DayOfTheWeek: enumpb.DayOfTheWeek_THURSDAY,
+// 	}
 
-	em.DayOfTheWeek = enumpb.DayOfTheWeek_MONDAY
-	fmt.Println(em)
-}
+// 	em.DayOfTheWeek = enumpb.DayOfTheWeek_MONDAY
+// 	fmt.Println(em)
+// }
 
 func jsonDemo(sm proto.Message) {
 	smAsString := toJSON(sm)
